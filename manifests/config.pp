@@ -49,4 +49,9 @@ class xd7vda::config inherits xd7vda {
     dsc_issingleinstance => 'Yes',
 	dsc_name => 'High performance'
   }
+  
+  #Enable WINRM service
+  
+  #Enable WINRM remote access firewall rules
+  
 }

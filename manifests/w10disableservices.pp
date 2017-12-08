@@ -1,4 +1,4 @@
-class xd7vda::w10disabledsc_xservices inherits xd7vda {
+class xd7vda::w10disableservices inherits xd7vda {
 	if ($osfamily == 'windows') and ($facts['os']['release']['major']==10) {
 		#Puppet agent will be run manually  
 		dsc_xservice{'PuppetAgent':
@@ -142,7 +142,7 @@ class xd7vda::w10disabledsc_xservices inherits xd7vda {
 		
 		#Disabling Infrared Monitoring service
 		dsc_xservice{'irmon':
-		  dsc_name => '',
+		  dsc_name => 'irmon',
       dsc_state => 'stopped',
       dsc_startuptype => 'Disabled'
 		}
@@ -346,7 +346,7 @@ class xd7vda::w10disabledsc_xservices inherits xd7vda {
 		
 		#Disabling Windows Mobile Hotspot service
 		dsc_xservice{'icssvc':
-		  dsc_name => '',
+		  dsc_name => 'icssvc',
       dsc_state => 'stopped',
       dsc_startuptype => 'Disabled' 
 		}
@@ -354,6 +354,13 @@ class xd7vda::w10disabledsc_xservices inherits xd7vda {
 		#Disabling Windows Search
     dsc_xservice{'WSearch':
       dsc_name => 'WSearch',
+      dsc_state => 'stopped',
+      dsc_startuptype => 'Disabled' 
+    }
+		
+		#Disabling Windows Defender
+    dsc_xservice{'WinDefend':
+      dsc_name => 'WinDefend',
       dsc_state => 'stopped',
       dsc_startuptype => 'Disabled' 
     }
@@ -402,6 +409,13 @@ class xd7vda::w10disabledsc_xservices inherits xd7vda {
 		  dsc_name => 'XboxNetApiSvc',
       dsc_state => 'stopped',
       dsc_startuptype => 'Disabled' 
-		}	
+		}
+		
+		#Disabling Indexing Service
+    dsc_xservice{'cisvc':
+      dsc_name => 'cisvc',
+      dsc_state => 'stopped',
+      dsc_startuptype => 'Disabled' 
+    } 	
 	}
 }

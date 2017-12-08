@@ -1,34 +1,5 @@
 class xd7vda::install inherits xd7vda {
-  
-	#Install dotnet framework
-	dsc_windowsfeature{'NET-Framework-Core':
-	  dsc_ensure => 'Present',
-	  dsc_name   => 'NET-Framework-Core',
-	  dsc_includeallsubfeature => true
-	}
-
-	dsc_windowsfeature{'NET-Framework-45-Core':
-	  dsc_ensure => 'Present',
-	  dsc_name   => 'NET-Framework-45-Core',
-	  dsc_includeallsubfeature => true
-	}
-	
-	#Remove unneeded features
-	dsc_windowsfeature{'FS-SMB1':
-	  dsc_ensure => 'Absent',
-	  dsc_name   => 'FS-SMB1'
-	}
-	
-	dsc_windowsfeature{'PowerShell-ISE':
-	  dsc_ensure => 'Absent',
-	  dsc_name   => 'PowerShell-ISE'
-	}
-	
-	dsc_windowsfeature{'XPS-Viewer':
-	  dsc_ensure => 'Absent',
-	  dsc_name   => 'XPS-Viewer'
-	}
-  
+   
   #Citrix VDA installation
   dsc_xd7vdafeature{'InstallVdaAgent':
     dsc_role => $vdaRole,
