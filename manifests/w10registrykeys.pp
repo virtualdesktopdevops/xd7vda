@@ -177,8 +177,8 @@ class xd7vda::w10registrykeys inherits xd7vda {
 		}->
 		
 		#Disable Web Search in search bar
-    registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Searc\DisableWebSearch':
-      path => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Searc\DisableWebSearch',
+    registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search\DisableWebSearch':
+      path => 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search\DisableWebSearch',
       ensure => present,
       type   => 'dword',
       data   => '1',
@@ -280,6 +280,10 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '4',
     }
     
+	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path1':
+	  ensure => present
+	}->
+	
     registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path1\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path1\CacheLimit',
       ensure => present,
@@ -287,6 +291,10 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '100',
     }
     
+	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path2':
+	  ensure => present
+	}->
+	
     registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path2\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path2\CacheLimit',
       ensure => present,
@@ -294,6 +302,10 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '100',
     }
     
+	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3':
+	  ensure => present
+	}->
+	
     registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3\CacheLimit',
       ensure => present,
@@ -301,6 +313,10 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '100',
     }
     
+	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4':
+	  ensure => present
+	}->
+	
 		registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4\CacheLimit',
       ensure => present,

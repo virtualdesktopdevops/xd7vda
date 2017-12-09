@@ -359,11 +359,11 @@ class xd7vda::w10disableservices inherits xd7vda {
     }
 		
 		#Disabling Windows Defender
-    dsc_xservice{'WinDefend':
-      dsc_name => 'WinDefend',
-      dsc_state => 'stopped',
-      dsc_startuptype => 'Disabled' 
-    }
+    #dsc_xservice{'WinDefend':
+    #  dsc_name => 'WinDefend',
+    #  dsc_state => 'stopped',
+    #  dsc_startuptype => 'Disabled' 
+    #}
 		
 		#Disabling Windows Update service
 		#dsc_xservice{'wuauserv':
