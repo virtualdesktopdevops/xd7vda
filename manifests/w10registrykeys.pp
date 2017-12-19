@@ -302,9 +302,9 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '100',
     }
     
-	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3':
-	  ensure => present
-	}->
+		registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3':
+		  ensure => present
+		}->
 	
     registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path3\CacheLimit',
@@ -313,9 +313,9 @@ class xd7vda::w10registrykeys inherits xd7vda {
       data   => '100',
     }
     
-	registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4':
-	  ensure => present
-	}->
+		registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4':
+		  ensure => present
+		}->
 	
 		registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4\CacheLimit':
       path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Cache\Paths\path4\CacheLimit',
@@ -415,6 +415,20 @@ class xd7vda::w10registrykeys inherits xd7vda {
       type   => 'dword',
       data   => '3',
     }
-        		
+     
+    #Disable Windows Defender through local strategy
+    registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender':
+      ensure => present
+    }->
+    
+    registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware':
+      path => 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\DisableAntiSpyware',
+      ensure => present,
+      type   => 'dword',
+      data   => '1',
+    }
+    
+        
+    #Disabling Notification Center through local strategy
   }
 }

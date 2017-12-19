@@ -1,5 +1,10 @@
 class xd7vda::install inherits xd7vda {
-   
+  
+  #Enable WinRM
+  exec {'EnableWinRM':
+    command => 'c:\Windows\System32\winrm.cmd quickconfig -quiet'
+  }->
+     
   #Citrix VDA installation
   dsc_xd7vdafeature{'InstallVdaAgent':
     dsc_role => $vdaRole,
@@ -37,7 +42,8 @@ class xd7vda::install inherits xd7vda {
   if $vdaRole == 'SessionVDA' {
     dsc_windowsfeature{ 'RDSH':
        dsc_ensure => 'Present',
-       dsc_name => 'RDS-RD-Server'
+       dsc_name => 'RDS-RD-Server',
+       require => Dsc_xd7vdafeature['InstallVdaAgent']
     }
   }
   

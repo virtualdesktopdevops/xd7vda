@@ -76,7 +76,7 @@ class xd7vda::w2k12r2disableservices inherits xd7vda {
 		  dsc_startuptype => 'Disabled'
 		}
 		
-		#Disk Defragmenter Service
+		#Disk Defragmenter Service - Optimize Drive
 		dsc_xservice{'defragsvc':
 		  dsc_name => 'defragsvc',
 		  dsc_state => 'stopped',

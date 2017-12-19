@@ -20,7 +20,8 @@ class xd7vda (
   $deliveryController1 = 'dc-01.ctxlab.aws',
   $deliveryController2 = '',
   $rdsLicenseServer = 'srv-lic01',
-  $domainNetbiosName='TESTLAB'
+  $domainNetbiosName='TESTLAB',
+  $pagefileSize = 2048
 )
 
 {
@@ -30,13 +31,20 @@ class xd7vda (
   contain xd7vda::w2k12r2disableservices
   contain xd7vda::w2k12r2registrykeys
   contain xd7vda::w2k12r2scheduledtasks
+  contain xd7vda::w2k12r2networkconfig
   contain xd7vda::w10features
   contain xd7vda::w10disableservices
   contain xd7vda::w10registrykeys
   contain xd7vda::w10scheduledtasks
+  contain xd7vda::w10networkconfig
   
   Class['::xd7vda::install'] ->
-  Class['::xd7vda::config']
+  Class['::xd7vda::config'] ->
+  Class['::xd7vda::w10features'] ->
+  Class['::xd7vda::w10disableservices'] ->
+  Class['::xd7vda::w10registrykeys'] ->
+  Class['::xd7vda::w10scheduledtasks'] ->
+  Class['::xd7vda::w10networkconfig']
   
   reboot { 'dsc_reboot':
     when    => pending

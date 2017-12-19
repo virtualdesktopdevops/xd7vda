@@ -50,8 +50,14 @@ class xd7vda::config inherits xd7vda {
 	dsc_name => 'High performance'
   }
   
-  #Enable WINRM service
+  #Configure fixed size pagefile
+  dsc_xvirtualmemory{'PagefileSettings':
+    dsc_type => 'CustomSize',
+    dsc_drive => 'C',
+    dsc_initialsize => $pagefileSize,
+    dsc_maximumsize => $pagefileSize
+  }
   
-  #Enable WINRM remote access firewall rules
+  #Periodically update WEM cache. Update Cache Wem scheluded task creation
   
 }
