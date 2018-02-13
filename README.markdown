@@ -1,5 +1,5 @@
 # xd7vda #
-This module installs an optimized Citrix master image ready for Machine Creation Service deployment. 
+This module installs an optimized Citrix master image ready for Machine Creation Service deployment.
 
 ## Integration informations
 Windows 10 and Windows Server 2012R2 are the only OS supported in this first release :
@@ -18,16 +18,17 @@ Features not (yet) supported :
 - Server VDI on server OS image (windows 2012R2)
 
 ## Usage
-- **svc_username** : (string) (mandatory) Privileged account used by Puppet 
-- **svc_password** : (string) (mandatory) Password of the privileged account. Should be encrypted with hiera-eyaml.
 - **vdaSourcePath** : (string) (mandatory) Path of a folder containing the Xendesktop 7.x installer (unarchive the ISO image in this folder). Can be a local or an UNC path
 - **wemAgentSourcePath** : (string) (mandatory) Path of the WEM agent installer EXE file. Can be a local or an UNC path.
-- **vdaRole** : (string)Master image type ; DesktopVDA for Windows 10, SessionVDA for Server OS (Windows Server 2012R2 or Windows Server 2016)
+- **wemProductId** : (string) (mandatory) WEM agent MSI installer ProductID. The following line of code will list all products installed, including their name and IdentifyingNumber, which is the same as the ProductID `Get-WmiObject Win32_Product | Format-Table IdentifyingNumber, Name, Version`. Values provided below for latest WEM versions
+  - **WEM 4.4** : 922301C1-F669-4327-AA4A-E0965E9E6BA9
+	- **WEM 4.5** : F653DF76-CC33-4F18-BB04-1F90986BE7A0
+- **vdaRole** : (string) (optional) Master image type ; DesktopVDA for Windows 10, SessionVDA for Server OS (Windows Server 2012R2 or Windows Server 2016). Default value : SessionVDA
 - **vdaRemoteAssistanceFeature** : (bool) (optional) Enable remote assistance ? Default is false
 - **deliveryController1** : (string) (mandatory) FQDN of the first Citrix Delivery Controller of the Xendesktop site
 - **deliveryController2** : (string) (optional) FQDN of a second Citrix Delivery Controller
 - **rdsLicenseServer** : (string) (mandatory for SessionVDA) FQDN of the Microsoft RDS License server. Required for application publishing through a Session VDA.
-- **domainNetbiosName** (string) Domain NETBIOS name
+- **pagefileSize** (int) (optional) Fixed size of Windows pagefile. Default value : 2048
 
 
 ## Installing a Citrix master image
@@ -35,16 +36,15 @@ Features not (yet) supported :
 ~~~puppet
 node 'master-w2k12r2' {
 	class{'xd7vda':
-	  svc_username => 'TESTLAB\svc-puppet',
-	  svc_password => 'P@ssw0rd',
-	  vdaSourcePath => '\\fileserver\xendesktop715',
-	  wemAgentSourcePath =>'\\fileserver\wem404\wemagent404.exe',
-	  vdaRole => 'SessionVDA', # string { DesktopVDA | SessionVDA }
+	  vdaSourcePath => '\\\\fileserver\\xendesktop715',
+	  wemAgentSourcePath =>'\\\\fileserver\\wem405\\wemagent405.exe',
+		wemProductId => 'F653DF76-CC33-4F18-BB04-1F90986BE7A0',
+	  vdaRole => 'SessionVDA',
 	  vdaRemoteAssistanceFeature => false,
 	  deliveryController1 => 'dc-01.ctxlab.aws',
 	  deliveryController2 = 'dc-02.ctxlab.aws',
 	  rdsLicenseServer = 'srv-lic01',
-	  domainNetbiosName='TESTLAB'
+		pagefileSize => 2048
 	}
 }
 ~~~
@@ -52,15 +52,14 @@ node 'master-w2k12r2' {
 ~~~puppet
 node 'master-w10' {
 	class{'xd7vda':
-	  svc_username => 'TESTLAB\svc-puppet',
-	  svc_password => 'P@ssw0rd',
-	  vdaSourcePath => '\\fileserver\xendesktop715',
-	  wemAgentSourcePath =>'\\fileserver\wem404\wemagent404.exe',
-	  vdaRole => 'DesktopVDA', # string { DesktopVDA | SessionVDA }
+	  vdaSourcePath => '\\\\fileserver\\xendesktop715',
+	  wemAgentSourcePath => '\\\fileserver\\wem405\\wemagent405.exe',
+    wemProductId => 'F653DF76-CC33-4F18-BB04-1F90986BE7A0',
+	  vdaRole => 'DesktopVDA',
 	  vdaRemoteAssistanceFeature => false,
 	  deliveryController1 => 'dc-01.ctxlab.aws',
 	  deliveryController2 = 'dc-02.ctxlab.aws',
-	  domainNetbiosName='TESTLAB'
+		pagefileSize => 2048
 	}
 }
 ~~~

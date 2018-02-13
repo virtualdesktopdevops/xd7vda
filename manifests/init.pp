@@ -11,16 +11,14 @@
 # Sample Usage:
 #
 class xd7vda (
-  $svc_username='USER01',
-  $svc_password='PASSWORD01',
-  $vdaSourcePath = 'C:\\XD715',
+  $vdaSourcePath,
   $wemAgentSourcePath,
+  $wemProductId,
   $vdaRole = 'SessionVDA', # string { DesktopVDA | SessionVDA }
   $vdaRemoteAssistanceFeature = false, #bool true, false
-  $deliveryController1 = 'dc-01.ctxlab.aws',
+  $deliveryController1,
   $deliveryController2 = '',
   $rdsLicenseServer = 'srv-lic01',
-  $domainNetbiosName='TESTLAB',
   $pagefileSize = 2048
 )
 
@@ -37,7 +35,7 @@ class xd7vda (
   contain xd7vda::w10registrykeys
   contain xd7vda::w10scheduledtasks
   contain xd7vda::w10networkconfig
-  
+
   Class['::xd7vda::install'] ->
   Class['::xd7vda::config'] ->
   Class['::xd7vda::w10features'] ->
@@ -45,9 +43,9 @@ class xd7vda (
   Class['::xd7vda::w10registrykeys'] ->
   Class['::xd7vda::w10scheduledtasks'] ->
   Class['::xd7vda::w10networkconfig']
-  
+
   reboot { 'dsc_reboot':
     when    => pending
   }
-  
+
 }
