@@ -65,7 +65,7 @@ class xd7vda::config inherits xd7vda {
     dsc_actionexecutable => '%ProgramFiles(x86)%\Norskale\Norskale Agent Host\AgentCacheUtility.exe',
     dsc_actionarguments => '-refreshcache -debug',
     dsc_scheduletype => 'AtStartup',
-    dsc_executiontimelimit => '00:03:00'
+    dsc_executiontimelimit => '00:03:00',
     dsc_enable => true,
     dsc_ensure => 'Present'
   }
