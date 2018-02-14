@@ -22,7 +22,7 @@ Features not (yet) supported :
 - **wemAgentSourcePath** : (string) (mandatory) Path of the WEM agent installer EXE file. Can be a local or an UNC path.
 - **wemProductId** : (string) (mandatory) WEM agent MSI installer ProductID. The following line of code will list all products installed, including their name and IdentifyingNumber, which is the same as the ProductID `Get-WmiObject Win32_Product | Format-Table IdentifyingNumber, Name, Version`. Values provided below for latest WEM versions
   - **WEM 4.4** : 922301C1-F669-4327-AA4A-E0965E9E6BA9
-	- **WEM 4.5** : F653DF76-CC33-4F18-BB04-1F90986BE7A0
+  - **WEM 4.5** : F653DF76-CC33-4F18-BB04-1F90986BE7A0
 - **vdaRole** : (string) (optional) Master image type ; DesktopVDA for Windows 10, SessionVDA for Server OS (Windows Server 2012R2 or Windows Server 2016). Default value : SessionVDA
 - **vdaRemoteAssistanceFeature** : (bool) (optional) Enable remote assistance ? Default is false
 - **deliveryController1** : (string) (mandatory) FQDN of the first Citrix Delivery Controller of the Xendesktop site
@@ -36,15 +36,15 @@ Features not (yet) supported :
 ~~~puppet
 node 'master-w2k12r2' {
 	class{'xd7vda':
-	  vdaSourcePath => '\\\\fileserver\\xendesktop715',
-	  wemAgentSourcePath =>'\\\\fileserver\\wem405\\wemagent405.exe',
-		wemProductId => 'F653DF76-CC33-4F18-BB04-1F90986BE7A0',
-	  vdaRole => 'SessionVDA',
-	  vdaRemoteAssistanceFeature => false,
-	  deliveryController1 => 'dc-01.ctxlab.aws',
-	  deliveryController2 = 'dc-02.ctxlab.aws',
-	  rdsLicenseServer = 'srv-lic01',
-		pagefileSize => 2048
+    vdaSourcePath => '\\\\fileserver\\xendesktop715',
+    wemAgentSourcePath =>'\\\\fileserver\\wem405\\wemagent405.exe',
+    wemProductId => 'F653DF76-CC33-4F18-BB04-1F90986BE7A0',
+    vdaRole => 'SessionVDA',
+    vdaRemoteAssistanceFeature => false,
+    deliveryController1 => 'dc-01.ctxlab.aws',
+    deliveryController2 = 'dc-02.ctxlab.aws',
+    rdsLicenseServer = 'srv-lic01',
+    pagefileSize => 2048
 	}
 }
 ~~~
@@ -52,14 +52,14 @@ node 'master-w2k12r2' {
 ~~~puppet
 node 'master-w10' {
 	class{'xd7vda':
-	  vdaSourcePath => '\\\\fileserver\\xendesktop715',
-	  wemAgentSourcePath => '\\\fileserver\\wem405\\wemagent405.exe',
+    vdaSourcePath => '\\\\fileserver\\xendesktop715',
+    wemAgentSourcePath => '\\\fileserver\\wem405\\wemagent405.exe',
     wemProductId => 'F653DF76-CC33-4F18-BB04-1F90986BE7A0',
-	  vdaRole => 'DesktopVDA',
-	  vdaRemoteAssistanceFeature => false,
-	  deliveryController1 => 'dc-01.ctxlab.aws',
-	  deliveryController2 = 'dc-02.ctxlab.aws',
-		pagefileSize => 2048
+    vdaRole => 'DesktopVDA',
+    vdaRemoteAssistanceFeature => false,
+    deliveryController1 => 'dc-01.ctxlab.aws',
+    deliveryController2 = 'dc-02.ctxlab.aws',
+    pagefileSize => 2048
 	}
 }
 ~~~
