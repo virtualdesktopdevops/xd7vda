@@ -1,13 +1,13 @@
 {
   "author": "virtualdesktopdevops",
   "dependencies": [
-	{ 
-		"name": "puppetlabs/registry", 
+	{
+		"name": "puppetlabs/registry",
 		"version_requirement": ">= 1.1.4"
 	},
-	{ 
-		"name": "puppetlabs/dsc", 
-		"version_requirement": ">= 1.4.0"
+	{
+		"name": "puppetlabs/dsc",
+		"version_requirement": ">= 1.5.0"
 	}
   ],
   "license": "Apache-2.0",
@@ -28,11 +28,13 @@
       "version_requirement": ">= 3.8.0 < 6.0.0"
     }
   ],
-  "source": "http://www.virtualdesktopdevops.com",
-  "summary": "Xendesktop 7.x master image creation with Citrix VDA and Citrix WEM installation",
+  "source": "https://virtualdesktopdevops.github.io/xd7vda/",
+  "issues_url": "https://github.com/virtualdesktopdevops/xd7deliverycontroller/issues",
+  "summary": "Citrix Xendesktop 7.x master image creation with VDA installation, WEM agent deployment, services, registry, scheduled tasks optimization",
   "tags": [
     "powershell",
     "dsc",
+    "citrix",
     "xendesktop",
     "master",
     "vda",

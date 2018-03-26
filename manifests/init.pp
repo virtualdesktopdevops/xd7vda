@@ -11,15 +11,15 @@
 # Sample Usage:
 #
 class xd7vda (
-  $vdasourcepath,
-  $wemagentsourcepath,
-  $wemproductid,
-  $deliverycontroller1,
-  $deliverycontroller2 = '',
-  $vdarole = 'SessionVDA', # string { DesktopVDA | SessionVDA }
-  $vdaremoteassistancefeature = false, #bool true, false
-  $rdslicenseserver = 'srv-lic01',
-  $pagefilesize = 2048
+  String $vdasourcepath,
+  String $wemagentsourcepath,
+  String $wemproductid,
+  String $deliverycontroller1,
+  $deliverycontroller2                          = '',
+  Enum['SessionVDA', 'DesktopVDA'] $vdarole     = 'SessionVDA',
+  Optional[Boolean] $vdaremoteassistancefeature = false,
+  Optional[String] $rdslicenseserver            = 'srv-lic01',
+  Optional[Integer] $pagefilesize               = 2048
 )
 
 {
