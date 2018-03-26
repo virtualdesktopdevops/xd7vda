@@ -11,15 +11,15 @@
 # Sample Usage:
 #
 class xd7vda (
-  $vdaSourcePath,
-  $wemAgentSourcePath,
-  $wemProductId,
-  $vdaRole = 'SessionVDA', # string { DesktopVDA | SessionVDA }
-  $vdaRemoteAssistanceFeature = false, #bool true, false
-  $deliveryController1,
-  $deliveryController2 = '',
-  $rdsLicenseServer = 'srv-lic01',
-  $pagefileSize = 2048
+  $vdasourcepath,
+  $wemagentsourcepath,
+  $wemproductid,
+  $deliverycontroller1,
+  $deliverycontroller2 = '',
+  $vdarole = 'SessionVDA', # string { DesktopVDA | SessionVDA }
+  $vdaremoteassistancefeature = false, #bool true, false
+  $rdslicenseserver = 'srv-lic01',
+  $pagefilesize = 2048
 )
 
 {
@@ -36,16 +36,15 @@ class xd7vda (
   contain xd7vda::w10scheduledtasks
   contain xd7vda::w10networkconfig
 
-  Class['::xd7vda::install'] ->
-  Class['::xd7vda::config'] ->
-  Class['::xd7vda::w10features'] ->
-  Class['::xd7vda::w10disableservices'] ->
-  Class['::xd7vda::w10registrykeys'] ->
-  Class['::xd7vda::w10scheduledtasks'] ->
-  Class['::xd7vda::w10networkconfig']
+  Class['::xd7vda::install']
+->Class['::xd7vda::config']
+->Class['::xd7vda::w10features']
+->Class['::xd7vda::w10disableservices']
+->Class['::xd7vda::w10registrykeys']
+->Class['::xd7vda::w10scheduledtasks']
+->Class['::xd7vda::w10networkconfig']
 
   reboot { 'dsc_reboot':
     when    => pending
   }
-
 }
