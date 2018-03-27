@@ -6,7 +6,7 @@
 		"version_requirement": ">= 1.1.4"
 	},
 	{
-		"name": "puppetlabs/dsc",
+		"name": "virtualdesktopdevops/dsc",
 		"version_requirement": ">= 1.5.0"
 	}
   ],
