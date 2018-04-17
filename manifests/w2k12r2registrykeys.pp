@@ -84,16 +84,26 @@ class xd7vda::w2k12r2registrykeys inherits xd7vda {
       data   => '0',
     }
 
+    #BootOptimizeFunction registry key
+    registry_key { 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction':
+      ensure => present
+    }
+
     #Disable background disk defragmentation
-    registry_value { 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable':
+    >registry_value { 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable':
       ensure => present,
       path   => 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable',
       type   => 'string',
       data   => 'N',
     }
 
+    #OptimalLayout registry key
+    registry_key { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout':
+      ensure => present
+    }
+
     #Disable background auto-layout
-    registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout\EnableAutoLayout':
+  ->registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout\EnableAutoLayout':
       ensure => present,
       path   => 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OptimalLayout\EnableAutoLayout',
       type   => 'dword',

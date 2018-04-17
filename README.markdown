@@ -28,6 +28,8 @@ _Features not (yet) supported :_
 - Provisioning Service (PvS). The Citrix Provisioning service target device agent is not deployed in this release.
 - Server VDI on server OS image (windows 2012R2)
 
+**VERY IMPORTANT** : RUN C:\run-before-publishing-master.bat AT EACH TIME BEFORE CREATING A SNAPSHOT OF YOUR MASTER IMAGE. SHUTDOWN THE VITUAL MACHINE JUST AFTER. THIS SCRIPT CONTAINS FINAL OPTIMIZATIONS FOR YOUR CITRIX VDA.
+
 ## Usage ##
 * **`[String]` vdaSourcePath** _(Required)_: Path of a folder containing the Xendesktop 7.x installer (unarchive the ISO image in this folder). Can be a local or an UNC path
 * **`[String]` wemAgentSourcePath** _(Required)_: Path of the WEM agent installer EXE file. Can be a local or an UNC path.

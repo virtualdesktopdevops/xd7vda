@@ -2,10 +2,11 @@
 class xd7vda::w10networkconfig inherits xd7vda {
   if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major']==10) {
     #Disable NETBIOS
-    dsc_xnetbios{'DisableNetBIOS':
-      dsc_interfacealias => $facts['interfaces'],
-      dsc_setting        => 'Disable'
-    }
+    #Disabled until publication of xNetbios bugfix in puppetlabs/dsc
+    #dsc_xnetbios{'DisableNetBIOS':
+    #  dsc_interfacealias => $facts['interfaces'],
+    #  dsc_setting        => 'Disable'
+    #}
 
     #Disable IPV6
     dsc_xnetadapterbinding{'DisableIPv6':
