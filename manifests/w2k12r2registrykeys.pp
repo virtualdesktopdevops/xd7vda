@@ -90,7 +90,7 @@ class xd7vda::w2k12r2registrykeys inherits xd7vda {
     }
 
     #Disable background disk defragmentation
-    >registry_value { 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable':
+  ->registry_value { 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable':
       ensure => present,
       path   => 'HKLM\SOFTWARE\Microsoft\Dfrg\BootOptimizeFunction\Enable',
       type   => 'string',
