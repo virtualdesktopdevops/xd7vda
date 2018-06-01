@@ -1,6 +1,6 @@
 #Class configuring Windows 10 Desktop VDA registry keys
 class xd7vda::w10registrykeys inherits xd7vda {
-  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major']==10) {
+  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major'] == '10') {
     ##DOTNETFRAMEWORKS
     registry_key { 'HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{89B4C1CD-B018-4511-B0A1-5476DBF70820}':
       ensure => absent

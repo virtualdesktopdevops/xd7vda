@@ -1,6 +1,6 @@
 #Class disabling unneeded services in a Windows 10 Desktop VDA
 class xd7vda::w10disableservices inherits xd7vda {
-  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major']==10) {
+  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major'] == '10') {
     #Puppet agent will be run manually
     dsc_xservice{'PuppetAgent':
       dsc_name        => 'puppet',

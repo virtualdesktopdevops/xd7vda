@@ -18,7 +18,7 @@ class xd7vda::install inherits xd7vda {
   }
 
   #Download and install WEM Agent
-  dsc_file{ 'WEMSetupDirectory':
+->dsc_file{ 'WEMSetupDirectory':
     dsc_destinationpath => 'C:\\WEMSetup',
     dsc_type            => 'Directory',
     dsc_ensure          => 'Present'

@@ -1,6 +1,6 @@
 #Class disabling built-in swheduled tasks unneeded in a Windows 10 Desktop VDA
 class xd7vda::w10scheduledtasks inherits xd7vda {
-  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major']==10) {
+  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major'] == '10') {
     dsc_xscheduledtask{'Office15Heartbeat':
       dsc_taskname => 'Office 15 Subscription Heartbeat',
       dsc_taskpath => '\Microsoft\Office\\',

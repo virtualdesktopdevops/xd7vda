@@ -1,6 +1,6 @@
 #Class removing unneeded features for a Desktop VDA
 class xd7vda::w10features inherits xd7vda {
-  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major']==10) {
+  if ($facts['osfamily'] == 'windows') and ($facts['os']['release']['major'] == '10') {
     #Remove SMB 1.0/CIFS File Sharing Support
     dsc_windowsoptionalfeature{'SMB1Protocol':
       dsc_ensure               => 'disable',
