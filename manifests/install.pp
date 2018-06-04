@@ -5,6 +5,13 @@ class xd7vda::install inherits xd7vda {
     command => 'c:\\Windows\\System32\\winrm.cmd quickconfig -quiet'
   }
 
+  # Setting Powershell Execution Policy to unrestricted
+->exec { 'Set PowerShell execution policy unrestricted':
+    command  => 'Set-ExecutionPolicy Unrestricted',
+    unless   => 'if ((Get-ExecutionPolicy -Scope LocalMachine).ToString() -eq "Unrestricted") { exit 0 } else { exit 1 }',
+    provider => powershell
+  }
+
   #Citrix VDA installation
 ->dsc_xd7vdafeature{'InstallVdaAgent':
     dsc_role                    => $xd7vda::vdarole,
