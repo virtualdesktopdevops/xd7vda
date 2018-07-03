@@ -11,16 +11,15 @@
 # Sample Usage:
 #
 class xd7vda (
-  $svc_username='USER01',
-  $svc_password='PASSWORD01',
-  $vdaSourcePath = 'C:\\XD715',
-  $wemAgentSourcePath,
-  $vdaRole = 'SessionVDA', # string { DesktopVDA | SessionVDA }
-  $vdaRemoteAssistanceFeature = false, #bool true, false
-  $deliveryController1 = 'dc-01.ctxlab.aws',
-  $deliveryController2 = '',
-  $rdsLicenseServer = 'srv-lic01',
-  $domainNetbiosName='TESTLAB'
+  String $vdasourcepath,
+  String $wemagentsourcepath,
+  String $wemproductid,
+  String $deliverycontroller1,
+  $deliverycontroller2                          = '',
+  Enum['SessionVDA', 'DesktopVDA'] $vdarole     = 'SessionVDA',
+  Optional[Boolean] $vdaremoteassistancefeature = false,
+  Optional[String] $rdslicenseserver            = 'srv-lic01',
+  Optional[Integer] $pagefilesize               = 2048
 )
 
 {
@@ -30,16 +29,27 @@ class xd7vda (
   contain xd7vda::w2k12r2disableservices
   contain xd7vda::w2k12r2registrykeys
   contain xd7vda::w2k12r2scheduledtasks
+  contain xd7vda::w2k12r2networkconfig
   contain xd7vda::w10features
   contain xd7vda::w10disableservices
   contain xd7vda::w10registrykeys
   contain xd7vda::w10scheduledtasks
-  
-  Class['::xd7vda::install'] ->
-  Class['::xd7vda::config']
-  
+  contain xd7vda::w10networkconfig
+
+  Class['::xd7vda::install']
+->Class['::xd7vda::config']
+->Class['::xd7vda::w2k12r2features']
+->Class['::xd7vda::w2k12r2disableservices']
+->Class['::xd7vda::w2k12r2registrykeys']
+->Class['::xd7vda::w2k12r2scheduledtasks']
+->Class['::xd7vda::w2k12r2networkconfig']
+->Class['::xd7vda::w10features']
+->Class['::xd7vda::w10disableservices']
+->Class['::xd7vda::w10registrykeys']
+->Class['::xd7vda::w10scheduledtasks']
+->Class['::xd7vda::w10networkconfig']
+
   reboot { 'dsc_reboot':
     when    => pending
   }
-  
 }
